@@ -44,7 +44,7 @@ function render() {
         <div>${taskList[i].taskContent}</div>
         <div>
             <button onclick= "toggleComplete('${taskList[i].id}')">Check</button>
-            <button onclick= "deleteTask()">Delete</button>
+            <button onclick= "deleteTask('${taskList[i].id}')">Delete</button>
         </div>
     </div>`;
     }
@@ -63,8 +63,15 @@ function toggleComplete(id) {
     render();
 }
 
-function deleteTask() {
-    console.log("삭제하다")
+function deleteTask(id) {
+    for(let i =0; i < taskList.length; i++){
+        if(taskList[i].id == id) {
+            taskList.splice(i,1)
+            break;
+        }
+    }
+    render();
+    console.log(taskList)
 }
 
 function randomIDGenerate() {
