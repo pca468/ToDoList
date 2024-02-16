@@ -15,13 +15,13 @@ body {
     border: 1px solid lightgrey;
 }
 
-.task-taps{
+.task-tabs{
     display: flex;
     border-bottom: 1px solid lightgrey;
     position: relative;
 }
 
-.task-taps div {
+.task-tabs div {
     padding: 1em;
 }
 
@@ -33,6 +33,7 @@ body {
     left: 0px;
     top: 52px;
     padding: 0;
+    transition: 0.5s;
 }
 
 .task {
@@ -43,4 +44,8 @@ body {
 
 .task-done{
     text-decoration: line-through;
+}
+
+.task-tabs div {
+    cursor: pointer;
 }
