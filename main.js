@@ -20,6 +20,12 @@ let filterList = []
 
 let horizontalUnderLine = document.getElementById("under-line");
 
+taskInput.addEventListener("keydown", function(event){
+    if(event.keyCode === 13){
+        addTask(event);
+    }
+});
+
 tabs.forEach((menu => 
     menu.addEventListener("click", (e) => horizontalIndicator(e)))
     );
@@ -28,7 +34,7 @@ function horizontalIndicator (e) {
     horizontalUnderLine.style.left = e.currentTarget.offsetLeft + "px";
     horizontalUnderLine.style.width = e.currentTarget.offsetWidth + "px";
     horizontalUnderLine.style.top = 
-    e.currentTarget.offsetTop + e.currentTarget.offsetHeight +"px";
+    e.currentTarget.offsetTop + (e.currentTarget.offsetHeight -4) +"px";
 }
 
 
@@ -49,7 +55,7 @@ function addTask() {
     };
 
     taskList.push(task);
-    console.log(taskList);
+    taskInput.value = ""
     render();
 }
 
@@ -72,7 +78,7 @@ function render() {
             <div class= "task-done">${list[i].taskContent}</div>
             <div>
                 <button onclick= "toggleComplete('${list[i].id}')">Check</button>
-                <button>Delete</button>
+                <button onclick= "deleteTask('${list[i].id}')">Delete</button>
             </div>
         </div>`;
         } else {
@@ -100,13 +106,16 @@ function toggleComplete(id) {
 }
 
 function deleteTask(id) {
-    for(let i =0; i < taskList.length; i++){
-        if(taskList[i].id == id) {
-            taskList.splice(i,1)
-            break;
-        }
-        render();
-    }
+    // for(let i =0; i < taskList.length; i++){
+    //     if(taskList[i].id == id) {
+    //         taskList.splice(i,1)
+    //         filterList = filterList.filter(task => task.id !== id);
+    //         break;
+    //     }
+    //     render();
+    // }
+    filterList = filterList.filter(task => task.id !== id);
+    render();
     console.log("삭제하자", id)
     console.log(taskList)
 }
